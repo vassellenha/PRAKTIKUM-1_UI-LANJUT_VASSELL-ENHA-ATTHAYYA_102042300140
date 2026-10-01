@@ -1,3 +1,87 @@
+<template>
+  <div
+    v-if="event"
+    class="event-detail-page"
+  >
+    <button
+      class="btn-back"
+      @click="router.push('/browse/events')"
+    >
+      &larr; Back to Event List
+    </button>
+
+    <div class="detail-header">
+      <div class="header-content">
+        <span class="event-tag">{{ event.category }}</span>
+        <h1>{{ event.title }}</h1>
+
+        <div class="meta-info">
+          <span class="meta-item">&#128197; {{ event.date }} &middot; {{ event.time }}</span>
+          <span class="meta-item">&#128205; {{ event.location }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-content">
+      <div class="main-desc">
+        <h2>About This Event</h2>
+        <p
+          v-for="(paragraph, index) in event.description"
+          :key="index"
+        >
+          {{ paragraph }}
+        </p>
+
+        <h2>Agenda</h2>
+        <ul class="agenda-list">
+          <li
+            v-for="(item, index) in event.agenda"
+            :key="index"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar">
+        <div class="ticket-card">
+          <h3>Ticket Price</h3>
+          <div class="price">{{ event.price }}</div>
+          <p class="ticket-desc">{{ event.ticketDesc }}</p>
+
+          <button class="btn-register">Register Now</button>
+
+          <p class="spots">{{ event.spots }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    v-else
+    class="event-not-found"
+  >
+    <p>Event not found.</p>
+    <button
+      class="btn-back"
+      @click="router.push('/browse/events')"
+    >
+      &larr; Back to Event List
+    </button>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { getEventById } from '@/data/events.js'
+
+const route = useRoute()
+const router = useRouter()
+
+const event = computed(() => getEventById(route.params.id))
+</script>
+
 <style scoped>
 .btn-back {
   background: none;
