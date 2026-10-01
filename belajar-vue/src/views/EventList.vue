@@ -1,3 +1,44 @@
+<template>
+  <div class="event-list-page">
+    <div class="header-section">
+      <h2 class="section-title">Upcoming Events</h2>
+      <p class="section-desc">Browse through our handpicked selection of events happening near you.</p>
+    </div>
+
+    <div class="event-grid">
+      <div
+        class="event-card"
+        v-for="event in events"
+        :key="event.id"
+      >
+        <div class="event-body">
+          <div class="event-meta">
+            <span class="event-date">{{ event.date }}</span>
+            <span class="event-category">{{ event.category }}</span>
+          </div>
+
+          <h3>{{ event.title }}</h3>
+          <p class="event-loc">{{ event.location }}</p>
+          <p class="event-desc">{{ event.shortDesc }}</p>
+
+          <div class="card-footer">
+            <router-link
+              :to="`/browse/events/${event.id}`"
+              class="btn-link"
+            >
+              View Details &rarr;
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { events } from '@/data/events.js'
+</script>
+
 <style scoped>
 .header-section {
   margin-bottom: 3rem;
