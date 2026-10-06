@@ -44,7 +44,7 @@
       </div>
 
       <div class="sidebar">
-        <div class="ticket-card">
+        <div class="ticket-card sticky-pane">
           <h3>Ticket Price</h3>
           <div class="price">{{ event.price }}</div>
           <p class="ticket-desc">{{ event.ticketDesc }}</p>
@@ -86,25 +86,22 @@ const event = computed(() => getEventById(route.params.id))
 .btn-back {
   background: none;
   border: none;
-  color: #666;
   font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
-  margin-bottom: 2rem;
-  transition: color 0.2s;
-  padding: 0;
+  margin-bottom: var(--space-6);
+  color: var(--text-muted);
 }
 
 .btn-back:hover {
-  color: #6644ff;
+  color: var(--primary);
 }
 
 .detail-header {
-  background: #fdfdfd;
-  border-radius: 20px;
-  border: 1px solid #f0f0f0;
-  padding: 4rem 3rem;
-  margin-bottom: 3rem;
+  background: var(--bg-light);
+  border-radius: var(--space-4);
+  border: 1px solid var(--border-color);
+  padding: var(--space-12) var(--space-8);
+  margin-bottom: var(--space-8);
 }
 
 .header-content {
@@ -114,135 +111,118 @@ const event = computed(() => getEventById(route.params.id))
 .event-tag {
   display: inline-block;
   background: rgba(102, 68, 255, 0.1);
-  color: #6644ff;
-  padding: 0.4rem 1rem;
+  color: var(--primary);
+  padding: var(--space-1) var(--space-4);
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-4);
 }
 
-.header-content h1 {
-  color: #1c1948;
+.detail-header h1 {
   font-size: 2.8rem;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-4);
   line-height: 1.2;
 }
 
 .meta-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: var(--space-6);
 }
 
 .meta-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: #555;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 1.05rem;
 }
 
+/* ASYMMETRICAL GRID */
 .detail-content {
-  display: flex;
-  gap: 4rem;
-}
-
-.main-desc {
-  flex: 2;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* Rasio lebar 2:1 (Atau 8:4 di kerangka 12-kolom) */
+  gap: var(--space-12);
 }
 
 .main-desc h2 {
-  color: #1c1948;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-4);
   font-size: 1.8rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.main-desc h2::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 4px;
-  background: #6644ff;
-  border-radius: 2px;
+  border-left: 4px solid var(--primary);
+  padding-left: var(--space-2);
 }
 
 .main-desc p {
-  color: #444;
+  color: var(--text-muted);
   line-height: 1.8;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-6);
   font-size: 1.05rem;
 }
 
 .agenda-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 var(--space-8) 0;
 }
 
 .agenda-list li {
-  padding: 1rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  color: #444;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
   font-size: 1.05rem;
 }
 
-.sidebar {
-  flex: 1;
-}
-
+/* FOCAL POINT CARD */
 .ticket-card {
   background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  padding: var(--space-8);
+  border-radius: var(--space-4);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   text-align: center;
+}
+
+/* STICKY BEHAVIOR */
+.sticky-pane {
   position: sticky;
   top: 100px;
 }
 
 .ticket-card h3 {
-  color: #1c1948;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-2);
 }
 
 .price {
   font-size: 2.8rem;
   font-weight: 800;
-  color: #6644ff;
-  margin-bottom: 0.5rem;
+  color: var(--primary);
+  margin-bottom: var(--space-2);
 }
 
 .ticket-desc {
-  color: #666;
-  margin-bottom: 2rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
 }
 
 .btn-register {
   width: 100%;
-  padding: 1.2rem;
-  background: #1c1948;
+  padding: var(--space-4);
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 12px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 .btn-register:hover {
-  background: #6644ff;
+  background: var(--primary-hover);
 }
 
 .spots {
-  margin-top: 1.5rem;
+  margin-top: var(--space-4);
   color: #e63946;
   font-weight: 600;
   font-size: 0.95rem;
@@ -250,15 +230,7 @@ const event = computed(() => getEventById(route.params.id))
 
 @media (max-width: 900px) {
   .detail-content {
-    flex-direction: column;
-  }
-
-  .detail-header {
-    padding: 3rem 2rem;
-  }
-
-  .header-content h1 {
-    font-size: 2.2rem;
+    grid-template-columns: 1fr;
   }
 }
 </style>

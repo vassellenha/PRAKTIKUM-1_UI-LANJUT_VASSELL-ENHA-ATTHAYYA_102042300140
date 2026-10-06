@@ -17,7 +17,7 @@
             <span class="event-category">{{ event.category }}</span>
           </div>
 
-          <h3>{{ event.title }}</h3>
+          <h3 class="event-title">{{ event.title }}</h3>
           <p class="event-loc">{{ event.location }}</p>
           <p class="event-desc">{{ event.shortDesc }}</p>
 
@@ -40,110 +40,66 @@ import { events } from '@/data/events.js'
 </script>
 
 <style scoped>
-.header-section {
-  margin-bottom: 3rem;
-}
+.header-section { margin-bottom: var(--space-8); }
+.section-title { font-size: 2.2rem; margin-bottom: var(--space-2); }
+.section-desc { color: var(--text-muted); font-size: 1.1rem; }
 
-.section-title {
-  font-size: 2.2rem;
-  color: #1c1948;
-  margin-bottom: 0.5rem;
-}
-
-.section-desc {
-  color: #666;
-  font-size: 1.1rem;
-}
-
+/* ADAPTIVE GRID */
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: var(--space-6);
 }
 
+/* COMMON REGIONS */
 .event-card {
   background: white;
-  border-radius: 16px;
+  border-radius: var(--space-4);
+  border: 1px solid var(--border-color);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-  border: 1px solid #f0f0f0;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
-  border-color: #ddd;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
 }
 
-.event-body {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+/* PROXIMITY */
+.event-body { padding: var(--space-6); display: flex; flex-direction: column; height: 100%; }
 
 .event-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-4);
 }
 
 .event-date {
   background: rgba(102, 68, 255, 0.1);
-  color: #6644ff;
-  padding: 0.4rem 0.8rem;
+  color: var(--primary);
+  padding: var(--space-1) var(--space-2);
   border-radius: 6px;
   font-weight: 600;
   font-size: 0.85rem;
 }
 
-.event-category {
-  color: #888;
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.event-body h3 {
-  color: #1c1948;
-  margin-bottom: 0.8rem;
-  font-size: 1.4rem;
-}
-
-.event-loc {
-  color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.event-desc {
-  color: #555;
-  line-height: 1.6;
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-  flex-grow: 1;
-}
+.event-category { color: var(--text-muted); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; }
+.event-title { margin-bottom: var(--space-2); font-size: 1.4rem; }
+.event-loc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-4); }
+.event-desc { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; margin-bottom: var(--space-6); flex-grow: 1; }
 
 .card-footer {
-  border-top: 1px solid #f0f0f0;
-  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--space-4);
 }
 
 .btn-link {
-  display: inline-block;
-  color: #1c1948;
+  color: var(--text-main);
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s;
 }
-
-.btn-link:hover {
-  color: #6644ff;
-}
+.btn-link:hover { color: var(--primary); }
 </style>
